@@ -1,0 +1,85 @@
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+
+%\VignetteIndexEntry{affy contamination tools}
+%\VignetteDepends{affydata}
+%\VignetteKeywords{Expression Analysis, QA}
+%\VignettePackage{affyContam}
+
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat} 
+ 
+\begin{document}
+%\setkeys{Gin}{width=0.55\textwidth}
+
+\title{affyContam: structured corruption of CEL-level data}
+\author{VJ Carey stvjc at channing.harvard.edu }
+
+\maketitle
+
+\section{Introduction}
+
+Microarray quality assessment is a major concern of
+microarray analysts.  This package provides some
+simple approaches to \textit{in silico} creation
+of quality problems in CEL-level data to help evaluate
+performance of quality metrics.
+
+\section{A small dataset}
+
+The \textit{affydata} package includes a dataset called
+Dilution.
+
+<<lkd,figure=TRUE>>=
+library(affydata)
+data(Dilution)
+image(Dilution[,1])
+@
+
+We can introduce a circular defect as follows:
+<<dodef>>=
+library(affyContam)
+dilc = setCircRegion(Dilution, chip=1, cdfname="hgu95av2cdf")
+<<lkp,eval=FALSE>>=
+image(dilc[,1])
+@
+\includegraphics{acon}
+
+Note that the extents of the region (which may be rectangular,
+see \texttt{setRectRegion}) can be varied using arguments
+to the set*Region functions.  The distribution of intensity
+values used to reset the raw data can also be specified using
+the \texttt{valgen} parameter.
+
+
+
+\end{document} 
