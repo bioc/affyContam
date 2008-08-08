@@ -68,7 +68,7 @@ image(Dilution[,1])
 We can introduce a circular defect as follows:
 <<dodef>>=
 library(affyContam)
-dilc = setCircRegion(Dilution, chip=1, cdfname="hgu95av2cdf")
+dilc = setCircRegion(Dilution, chip=1)
 <<lkp,eval=FALSE>>=
 image(dilc[,1])
 @
