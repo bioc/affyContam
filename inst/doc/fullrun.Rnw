@@ -128,7 +128,7 @@ scr.40 = function (x, chip = 1, center = c(150, 150), rad = 75, vals = 40,
 @
 A similar contamination procedure with constant high intensity (20000):
 <<scr2>>=
-scr.20k = function (x, chip = 1, center = c(400, 400), rad = 75, vals = 20000,
+scr.20k = function (x, chip = 1, center = c(500, 500), rad = 75, vals = 20000,
     valgen = NULL)
 {
     cdfname = paste(annotation(x), "cdf", sep = "")
@@ -145,10 +145,11 @@ scr.20k = function (x, chip = 1, center = c(400, 400), rad = 75, vals = 20000,
     else exprs(x)[indsbad, chip] = valgen(length(indsbad))
     x
 }
+@
 
 Second, a somewhat larger circle with rescaled variance:
 <<dov>>=
-incvarCircRegion = function(x, chip=1, center=c(150,150), rad=100, fac=2) {
+incvarCircRegion = function(x, chip=1, center=c(150,500), rad=100, fac=2) {
  tmp = fac*getCircRegion(x, chip, center, rad)
  setCircRegion(x, chip, center, rad, vals=tmp)
 }
@@ -160,6 +161,16 @@ incvarRectRegion = function(x, chip=1, xinds=350:700, yinds=1:700, fac=2) {
  tmp = fac*getRectRegion(x, chip, xinds, yinds)
  setRectRegion(x, chip, xinds, yinds, vals=tmp)
 }
+@
+
+<<compo>>=
+tryout = scr.40(s12)
+tryout = scr.20k(tryout)
+tryout = incvarCircRegion(tryout)
+fin = incvarRectRegion(tryout)
+png(file="lkcomp.png")
+image(fin[,1], main="composite contamination")
+dev.off()
 @
 
 
