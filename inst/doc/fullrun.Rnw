@@ -60,7 +60,7 @@ mostmr = c("203508_at", "204563_at", "204513_s_at", "204205_at", "204959_at",
 @
 
 <<cod>>=
-fullrun = function( abatch, arma, contFun, filtpn, targpn, ... ) {
+fullrun = function( abatch, arma, contFun, filtpn, targpn, chips=1, ... ) {
 # assess detectability in original data
  dvec = (1:ncol(exprs(abatch)))
  des = model.matrix(~dvec)
@@ -68,7 +68,11 @@ fullrun = function( abatch, arma, contFun, filtpn, targpn, ... ) {
  eaf1 = eBayes(af1)
  orig.tt = eaf1$t[targpn,2]
 # contaminate
- cbat = contFun(abatch, ...)
+ cbat = contFun(abatch, chip=chips[1], ...)
+ if (length(chips)>1) {
+   for (i in 2:(length(chips)))
+     cbat = contFun(cbat, chip=chips[i], ...)
+   }
 # assess detectability in contaminated data
  crma = rma(cbat)[filtpn,]
  dvec = (1:ncol(exprs(abatch)))
@@ -96,7 +100,7 @@ fullrun = function( abatch, arma, contFun, filtpn, targpn, ... ) {
  list(orig=orig.tt, contam=contam.tt, repair=repair.tt, md=md)
 }
  
-<<ddd,eval=FALSE>>=
+<<ddd>>=
 ff = fullrun( s12, s12rma, setCircRegion, kppn, mostmr )
 @
 
