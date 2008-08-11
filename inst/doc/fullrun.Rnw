@@ -97,11 +97,11 @@ fullrun = function( abatch, arma, contFun, filtpn, targpn, chips=1, ... ) {
  repair.tt = ef1$t[targpn,2]
 # compute the mdqc result
  md = mdqc(caos[[3]][,2:10], robust="MCD")
- list(orig=orig.tt, contam=contam.tt, repair=repair.tt, md=md)
+ list(orig=orig.tt, contam=contam.tt, repair=repair.tt, md=md, todrop=todrop)
 }
  
 <<ddd>>=
-ff = fullrun( s12, s12rma, setCircRegion, kppn, mostmr )
+ff = fullrun( s12, s12rma, setCircRegion, kppn, mostmr, chips=1:2 )
 @
 
 \end{document}
