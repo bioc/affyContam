@@ -108,7 +108,7 @@ Here are some contaminator procedures.
 
 First, a modest sized circle with constant low intensity (40)
 <<scr>>=
-scr.40 = function (x, chip = 1, center = c(150, 150), rad = 75, vals = 40, 
+scr.40 = function (x, chip = 1, center = c(150, 150), rad = 75, vals = 30, 
     valgen = NULL) 
 {
     cdfname = paste(annotation(x), "cdf", sep = "")
@@ -128,7 +128,7 @@ scr.40 = function (x, chip = 1, center = c(150, 150), rad = 75, vals = 40,
 @
 A similar contamination procedure with constant high intensity (20000):
 <<scr2>>=
-scr.20k = function (x, chip = 1, center = c(500, 500), rad = 75, vals = 20000,
+scr.20k = function (x, chip = 1, center = c(500, 500), rad = 75, vals = 30000,
     valgen = NULL)
 {
     cdfname = paste(annotation(x), "cdf", sep = "")
@@ -149,7 +149,7 @@ scr.20k = function (x, chip = 1, center = c(500, 500), rad = 75, vals = 20000,
 
 Second, a somewhat larger circle with rescaled variance:
 <<dov>>=
-incvarCircRegion = function(x, chip=1, center=c(150,500), rad=100, fac=2) {
+incvarCircRegion = function(x, chip=1, center=c(150,500), rad=100, fac=3) {
  tmp = fac*getCircRegion(x, chip, center, rad)
  setCircRegion(x, chip, center, rad, vals=tmp)
 }
@@ -157,7 +157,7 @@ incvarCircRegion = function(x, chip=1, center=c(150,500), rad=100, fac=2) {
 
 Third, a large rectangular region with rescaled variance:
 <<dov>>=
-incvarRectRegion = function(x, chip=1, xinds=350:700, yinds=1:700, fac=2) {
+incvarRectRegion = function(x, chip=1, xinds=350:700, yinds=1:700, fac=3) {
  tmp = fac*getRectRegion(x, chip, xinds, yinds)
  setRectRegion(x, chip, xinds, yinds, vals=tmp)
 }
@@ -174,30 +174,30 @@ dev.off()
 @
 
 <<doruns>>=
-d1 = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=1 )
-save(d1, file="d1.rda")
-d2 = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=1:2 )
-save(d2, file="d2.rda")
-d3 = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=c(1:2,11) )
-save(d3, file="d3.rda")
-H1 = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=1 )
-save(H1, file="H1.rda")
-H2 = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=1:2 )
-save(H2, file="H2.rda")
-H3 = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=c(1:2,11) )
-save(H3, file="H3.rda")
-I1 = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=1 )
-save(I1, file="I1.rda")
-I2 = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=1:2 )
-save(I2, file="I2.rda")
-I3 = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=c(1:2,11) )
-save(I3, file="I3.rda")
-R1 = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=1 )
-save(R1, file="R1.rda")
-R2 = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=1:2 )
-save(R2, file="R2.rda")
-R3 = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=c(1:2,11) )
-save(R3, file="R3.rda")
+d1b = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=1 )
+save(d1b, file="d1b.rda")
+d2b = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=1:2 )
+save(d2b, file="d2b.rda")
+d3b = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=c(1:2,11) )
+save(d3b, file="d3b.rda")
+H1b = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=1 )
+save(H1b, file="H1b.rda")
+H2b = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=1:2 )
+save(H2b, file="H2b.rda")
+H3b = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=c(1:2,11) )
+save(H3b, file="H3b.rda")
+I1b = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=1 )
+save(I1b, file="I1b.rda")
+I2b = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=1:2 )
+save(I2b, file="I2b.rda")
+I3b = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=c(1:2,11) )
+save(I3b, file="I3b.rda")
+R1b = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=1 )
+save(R1b, file="R1b.rda")
+R2b = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=1:2 )
+save(R2b, file="R2b.rda")
+R3b = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=c(1:2,11) )
+save(R3b, file="R3b.rda")
 @
 
 
