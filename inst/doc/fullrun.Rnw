@@ -163,7 +163,7 @@ incvarRectRegion = function(x, chip=1, xinds=350:700, yinds=1:700, fac=2) {
 }
 @
 
-<<compo>>=
+<<compo,eval=FALSE>>=
 tryout = scr.40(s12)
 tryout = scr.20k(tryout)
 tryout = incvarCircRegion(tryout)
@@ -172,6 +172,34 @@ png(file="lkcomp.png")
 image(fin[,1], main="composite contamination")
 dev.off()
 @
+
+<<doruns>>=
+d1 = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=1 )
+save(d1, file="d1.rda")
+d2 = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=1:2 )
+save(d2, file="d2.rda")
+d3 = fullrun( s12, s12rma, scr.40, kppn, mostmr, chips=c(1:2,11) )
+save(d3, file="d3.rda")
+H1 = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=1 )
+save(H1, file="H1.rda")
+H2 = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=1:2 )
+save(H2, file="H2.rda")
+H3 = fullrun( s12, s12rma, scr.20k, kppn, mostmr, chips=c(1:2,11) )
+save(H3, file="H3.rda")
+I1 = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=1 )
+save(I1, file="I1.rda")
+I2 = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=1:2 )
+save(I2, file="I2.rda")
+I3 = fullrun( s12, s12rma, incvarCircRegion, kppn, mostmr, chips=c(1:2,11) )
+save(I3, file="I3.rda")
+R1 = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=1 )
+save(R1, file="R1.rda")
+R2 = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=1:2 )
+save(R2, file="R2.rda")
+R3 = fullrun( s12, s12rma, incvarRectRegion, kppn, mostmr, chips=c(1:2,11) )
+save(R3, file="R3.rda")
+@
+
 
 
 \end{document}
