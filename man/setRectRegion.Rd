@@ -22,23 +22,15 @@ getCircRegion(x, chip=1, center=c(350,350), rad=100)
   \item{center}{ geometric center of circle to be altered }
   \item{rad}{ radius of circle to be altered, in xy units of the chip addressing system
 used by xy2indices in the cdf package}
-  \item{cdfname}{ cdfname}
   \item{valgen}{ function of parameter n that generates n values to be inserted in the
 altered region }
 }
-%\details{
-%}
 \value{
 set* functions return AffyBatch instance with intensities modified as requested
 
 get* functions return numeric vectors of intensities as requested.
 }
-%\references{  }
 \author{Vince Carey <stvjc@channing.harvard.edu>}
-%\note{  }
-
-
-%\seealso{  }
 
 \examples{
 library(affydata)
