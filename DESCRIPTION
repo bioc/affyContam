@@ -1,6 +1,6 @@
 Package: affyContam
 Title: structured corruption of affymetrix cel file data
-Version: 0.99.1
+Version: 1.0.0
 Author: V. Carey
 Description: structured corruption of cel file data to demonstrate QA effectiveness
 Depends: R (>= 2.7.0), tools, methods, utils, Biobase, affy, affydata
